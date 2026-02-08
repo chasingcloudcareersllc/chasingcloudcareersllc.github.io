@@ -1,11 +1,30 @@
 'use client'
 
 import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { Menu, X, Github } from 'lucide-react'
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const pathname = usePathname()
+
+  function isActive(href: string) {
+    if (href === '/') return pathname === '/'
+    return pathname.startsWith(href)
+  }
+
+  function navLinkClass(href: string) {
+    return isActive(href)
+      ? 'text-accent-500 font-semibold transition-colors duration-200'
+      : 'text-slate-700 hover:text-accent-500 font-medium transition-colors duration-200'
+  }
+
+  function mobileNavLinkClass(href: string) {
+    return isActive(href)
+      ? 'block px-3 py-2 text-accent-500 font-semibold transition-colors duration-200'
+      : 'block px-3 py-2 text-slate-700 hover:text-accent-500 font-medium transition-colors duration-200'
+  }
 
   return (
     <header className="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-50">
@@ -20,22 +39,13 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link
-              href="/"
-              className="text-slate-700 hover:text-accent-500 font-medium transition-colors duration-200"
-            >
+            <Link href="/" className={navLinkClass('/')}>
               Home
             </Link>
-            <Link
-              href="/learn/"
-              className="text-slate-700 hover:text-accent-500 font-medium transition-colors duration-200"
-            >
+            <Link href="/learn/" className={navLinkClass('/learn/')}>
               Learn
             </Link>
-            <Link
-              href="/blog/"
-              className="text-slate-700 hover:text-accent-500 font-medium transition-colors duration-200"
-            >
+            <Link href="/blog/" className={navLinkClass('/blog/')}>
               Blog
             </Link>
 
@@ -73,21 +83,21 @@ export function Header() {
             <div className="px-2 pt-2 pb-3 space-y-1 border-t border-slate-200">
               <Link
                 href="/"
-                className="block px-3 py-2 text-slate-700 hover:text-accent-500 font-medium transition-colors duration-200"
+                className={mobileNavLinkClass('/')}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Home
               </Link>
               <Link
                 href="/learn/"
-                className="block px-3 py-2 text-slate-700 hover:text-accent-500 font-medium transition-colors duration-200"
+                className={mobileNavLinkClass('/learn/')}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Learn
               </Link>
               <Link
                 href="/blog/"
-                className="block px-3 py-2 text-slate-700 hover:text-accent-500 font-medium transition-colors duration-200"
+                className={mobileNavLinkClass('/blog/')}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Blog

@@ -7,6 +7,7 @@ import {
   getPathData,
 } from '@/lib/learn'
 import { getIcon } from '@/lib/icons'
+import { LearnSidebar } from '@/components/LearnSidebar'
 import type { Metadata } from 'next'
 
 export const dynamicParams = false
@@ -107,7 +108,7 @@ export default async function LearnPageRoute({
                   >
                     <div className="flex items-center gap-4 flex-shrink-0">
                       <span className="text-sm font-bold text-slate-300 w-8 text-right">
-                        {index === 0 ? 'Start' : String(index).padStart(2, '0')}
+                        {String(index + 1).padStart(2, '0')}
                       </span>
                       <div className="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center">
                         <Icon className="h-6 w-6 text-accent-500" />
@@ -151,53 +152,67 @@ export default async function LearnPageRoute({
   return (
     <div className="bg-white">
       <div className="container-max section-padding">
-        <div className="max-w-4xl mx-auto">
-          <Link
-            href={`/learn/${pathName}/`}
-            className="inline-flex items-center text-accent-500 hover:text-accent-600 font-medium mb-8 text-sm transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4 mr-1" />
-            {pathLabel}
-          </Link>
-
-          <article>
-            <div
-              className="prose-learn"
-              dangerouslySetInnerHTML={{ __html: page.contentHtml }}
-            />
-
-            {/* Prev/Next Navigation */}
-            <div className="mt-12 pt-8 border-t border-slate-200 flex justify-between">
-              {prevPage ? (
-                <Link
-                  href={`/learn/${prevPage.slug.join('/')}/`}
-                  className="flex items-center text-accent-500 hover:text-accent-600 font-medium transition-colors"
-                >
-                  <ArrowLeft className="h-4 w-4 mr-2" />
-                  <div className="text-left">
-                    <div className="text-xs text-slate-400">Previous</div>
-                    <div>{prevPage.title}</div>
-                  </div>
-                </Link>
-              ) : (
-                <div />
-              )}
-              {nextPage ? (
-                <Link
-                  href={`/learn/${nextPage.slug.join('/')}/`}
-                  className="flex items-center text-accent-500 hover:text-accent-600 font-medium transition-colors text-right"
-                >
-                  <div>
-                    <div className="text-xs text-slate-400">Next</div>
-                    <div>{nextPage.title}</div>
-                  </div>
-                  <ArrowRight className="h-4 w-4 ml-2" />
-                </Link>
-              ) : (
-                <div />
-              )}
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Sidebar */}
+          <aside className="lg:w-64 flex-shrink-0">
+            <div className="lg:sticky lg:top-24">
+              <Link
+                href={`/learn/${pathName}/`}
+                className="inline-flex items-center text-accent-500 hover:text-accent-600 font-medium mb-6 text-sm transition-colors"
+              >
+                <ArrowLeft className="h-4 w-4 mr-1" />
+                {pathLabel}
+              </Link>
+              <LearnSidebar
+                pathName={pathName}
+                pathLabel={pathLabel}
+                pages={allPages}
+                currentSlug={slug}
+              />
             </div>
-          </article>
+          </aside>
+
+          {/* Content */}
+          <div className="flex-grow min-w-0">
+            <article>
+              <div
+                className="prose-learn"
+                dangerouslySetInnerHTML={{ __html: page.contentHtml }}
+              />
+
+              {/* Prev/Next Navigation */}
+              <div className="mt-12 pt-8 border-t border-slate-200 flex justify-between">
+                {prevPage ? (
+                  <Link
+                    href={`/learn/${prevPage.slug.join('/')}/`}
+                    className="flex items-center text-accent-500 hover:text-accent-600 font-medium transition-colors"
+                  >
+                    <ArrowLeft className="h-4 w-4 mr-2" />
+                    <div className="text-left">
+                      <div className="text-xs text-slate-400">Previous</div>
+                      <div>{prevPage.title}</div>
+                    </div>
+                  </Link>
+                ) : (
+                  <div />
+                )}
+                {nextPage ? (
+                  <Link
+                    href={`/learn/${nextPage.slug.join('/')}/`}
+                    className="flex items-center text-accent-500 hover:text-accent-600 font-medium transition-colors text-right"
+                  >
+                    <div>
+                      <div className="text-xs text-slate-400">Next</div>
+                      <div>{nextPage.title}</div>
+                    </div>
+                    <ArrowRight className="h-4 w-4 ml-2" />
+                  </Link>
+                ) : (
+                  <div />
+                )}
+              </div>
+            </article>
+          </div>
         </div>
       </div>
     </div>

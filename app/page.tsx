@@ -61,7 +61,7 @@ export default function Home() {
               Free self-service training materials and learning paths for cloud computing, AI, and DevOps. Start your tech career journey today with hands-on, practical education.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/learn/getting-started/getting-started/" className="btn-primary text-lg px-8 py-4">
+              <Link href="/learn/" className="btn-primary text-lg px-8 py-4">
                 Start Learning
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
@@ -110,7 +110,7 @@ export default function Home() {
             Whether you&apos;re just starting out or looking to level up your skills, our free learning paths will guide you every step of the way.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/learn/getting-started/getting-started/" className="inline-flex items-center px-8 py-4 bg-white text-accent-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors">
+            <Link href="/learn/" className="inline-flex items-center px-8 py-4 bg-white text-accent-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors">
               Start Learning
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { Calendar, Clock, ArrowLeft, User } from 'lucide-react'
-import { getAllPostSlugs, getPostBySlug } from '@/lib/blog'
+import { Calendar, Clock, ArrowLeft, ArrowRight, User } from 'lucide-react'
+import { getAllPostSlugs, getPostBySlug, getAdjacentPosts } from '@/lib/blog'
 import { JsonLd } from '@/components/JsonLd'
 import type { Metadata } from 'next'
 
@@ -58,6 +58,8 @@ export default async function BlogPostPage({
     notFound()
   }
 
+  const { prev, next } = getAdjacentPosts(slug)
+
   return (
     <div className="bg-white">
       <JsonLd
@@ -98,12 +100,13 @@ export default async function BlogPostPage({
 
             <div className="flex flex-wrap gap-2 mb-4">
               {post.tags.map((tag) => (
-                <span
+                <Link
                   key={tag}
-                  className="inline-block bg-accent-100 text-accent-700 text-xs font-medium px-2.5 py-0.5 rounded-full"
+                  href={`/blog/?tag=${encodeURIComponent(tag)}`}
+                  className="inline-block bg-accent-100 text-accent-700 text-xs font-medium px-2.5 py-0.5 rounded-full hover:bg-accent-200 transition-colors"
                 >
                   {tag}
-                </span>
+                </Link>
               ))}
             </div>
 
@@ -149,13 +152,45 @@ export default async function BlogPostPage({
         </div>
       </section>
 
-      {/* Bottom Section */}
+      {/* Prev/Next Navigation */}
       <section className="section-padding border-t border-slate-200">
-        <div className="max-w-3xl mx-auto text-center">
-          <Link href="/blog/" className="btn-primary inline-flex items-center">
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to All Posts
-          </Link>
+        <div className="max-w-3xl mx-auto">
+          <div className="flex justify-between">
+            {prev ? (
+              <Link
+                href={`/blog/${prev.slug}/`}
+                className="flex items-center text-accent-500 hover:text-accent-600 font-medium transition-colors"
+              >
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                <div className="text-left">
+                  <div className="text-xs text-slate-400">Previous</div>
+                  <div>{prev.title}</div>
+                </div>
+              </Link>
+            ) : (
+              <div />
+            )}
+            {next ? (
+              <Link
+                href={`/blog/${next.slug}/`}
+                className="flex items-center text-accent-500 hover:text-accent-600 font-medium transition-colors text-right"
+              >
+                <div>
+                  <div className="text-xs text-slate-400">Next</div>
+                  <div>{next.title}</div>
+                </div>
+                <ArrowRight className="h-4 w-4 ml-2" />
+              </Link>
+            ) : (
+              <div />
+            )}
+          </div>
+          <div className="text-center mt-8">
+            <Link href="/blog/" className="btn-primary inline-flex items-center">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to All Posts
+            </Link>
+          </div>
         </div>
       </section>
     </div>

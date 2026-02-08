@@ -87,6 +87,16 @@ export function getAllPosts(): BlogPostMeta[] {
   return posts
 }
 
+export function getAdjacentPosts(slug: string): { prev: BlogPostMeta | null; next: BlogPostMeta | null } {
+  const posts = getAllPosts() // sorted newest-first
+  const index = posts.findIndex((p) => p.slug === slug)
+  if (index === -1) return { prev: null, next: null }
+  // prev = older post (index+1), next = newer post (index-1)
+  const prev = index < posts.length - 1 ? posts[index + 1] : null
+  const next = index > 0 ? posts[index - 1] : null
+  return { prev, next }
+}
+
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   if (!fs.existsSync(POSTS_DIRECTORY)) return null
 

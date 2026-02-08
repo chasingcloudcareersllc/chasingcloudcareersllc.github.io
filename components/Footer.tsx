@@ -1,7 +1,10 @@
 import Link from 'next/link'
 import { Github, Linkedin } from 'lucide-react'
+import { getAllLearnPaths } from '@/lib/learn'
 
 export function Footer() {
+  const learnPaths = getAllLearnPaths()
+
   return (
     <footer className="bg-slate-800 text-white">
       <div className="container-max section-padding">
@@ -44,9 +47,16 @@ export function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link href="/learn/" className="text-slate-300 hover:text-white transition-colors">
-                  Learning Paths
+                  All Paths
                 </Link>
               </li>
+              {learnPaths.map((lp) => (
+                <li key={lp.name}>
+                  <Link href={`/learn/${lp.name}/`} className="text-slate-300 hover:text-white transition-colors">
+                    {lp.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { Calendar, Clock, ArrowRight } from 'lucide-react'
 import type { BlogPostMeta } from '@/lib/blog'
@@ -10,8 +11,15 @@ type Props = {
   allTags: string[]
 }
 
-export default function BlogPostGrid({ posts, allTags }: Props) {
-  const [selectedTags, setSelectedTags] = useState<Set<string>>(new Set())
+function BlogPostGridInner({ posts, allTags }: Props) {
+  const searchParams = useSearchParams()
+  const tagParam = searchParams.get('tag')
+  const [selectedTags, setSelectedTags] = useState<Set<string>>(() => {
+    if (tagParam && allTags.includes(tagParam)) {
+      return new Set([tagParam])
+    }
+    return new Set()
+  })
 
   function toggleTag(tag: string) {
     setSelectedTags((prev) => {
@@ -139,5 +147,13 @@ export default function BlogPostGrid({ posts, allTags }: Props) {
         </div>
       )}
     </>
+  )
+}
+
+export default function BlogPostGrid({ posts, allTags }: Props) {
+  return (
+    <Suspense>
+      <BlogPostGridInner posts={posts} allTags={allTags} />
+    </Suspense>
   )
 }
