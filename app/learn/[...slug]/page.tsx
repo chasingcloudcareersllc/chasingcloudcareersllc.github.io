@@ -1,45 +1,13 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import {
-  ArrowLeft,
-  ArrowRight,
-  Compass,
-  Monitor,
-  Cpu,
-  Terminal,
-  PenTool,
-  FileCode,
-  Code,
-  GitBranch,
-  Network,
-  RefreshCw,
-  Container,
-  Ship,
-  Blocks,
-} from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import {
   getAllLearnSlugs,
   getLearnPage,
   getPathData,
 } from '@/lib/learn'
+import { getIcon } from '@/lib/icons'
 import type { Metadata } from 'next'
-import type { LucideIcon } from 'lucide-react'
-
-const sectionIcons: Record<string, LucideIcon> = {
-  'getting-started': Compass,
-  'introduction-to-computers': Monitor,
-  'os-fundamentals': Cpu,
-  linux: Terminal,
-  'text-editing': PenTool,
-  'shell-scripting': FileCode,
-  programming: Code,
-  'version-control': GitBranch,
-  'networking-fundamentals': Network,
-  cicd: RefreshCw,
-  containers: Container,
-  'container-orchestration': Ship,
-  iac: Blocks,
-}
 
 export const dynamicParams = false
 
@@ -129,8 +97,7 @@ export default async function LearnPageRoute({
           <div className="container-max max-w-4xl">
             <div className="space-y-4">
               {pathData.pages.map((page, index) => {
-                const sectionName = page.slug[1]
-                const Icon = sectionIcons[sectionName] ?? Compass
+                const Icon = getIcon(page.icon)
 
                 return (
                   <Link

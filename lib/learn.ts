@@ -17,6 +17,7 @@ export type LearnPageMeta = {
   title: string
   description: string
   position: number
+  icon?: string
 }
 
 export type LearnPage = LearnPageMeta & {
@@ -27,19 +28,47 @@ export type LearnPath = {
   name: string
   label: string
   description: string
+  icon?: string
   sectionCount: number
   pages: LearnPageMeta[]
 }
 
-const pathOrder = ['foundations']
-
-const pathLabels: Record<string, string> = {
-  foundations: 'Foundations',
+type PathMeta = {
+  name: string
+  label: string
+  description: string
+  icon?: string
+  position: number
 }
 
-const pathDescriptions: Record<string, string> = {
-  foundations:
-    'Build the universal foundation for any tech career — from how computers work through infrastructure as code.',
+function discoverPaths(): PathMeta[] {
+  if (!fs.existsSync(LEARN_DIRECTORY)) return []
+
+  const entries = fs.readdirSync(LEARN_DIRECTORY).filter((entry) => {
+    const fullPath = path.join(LEARN_DIRECTORY, entry)
+    return fs.statSync(fullPath).isDirectory()
+  })
+
+  const paths: PathMeta[] = []
+
+  for (const entry of entries) {
+    const pathMetaFile = path.join(LEARN_DIRECTORY, entry, '_path.md')
+    if (!fs.existsSync(pathMetaFile)) continue
+
+    const fileContents = fs.readFileSync(pathMetaFile, 'utf8')
+    const { data } = matter(fileContents)
+
+    paths.push({
+      name: entry,
+      label: data.title ?? entry.replace(/-/g, ' '),
+      description: data.description ?? '',
+      icon: data.icon,
+      position: data.position ?? 99,
+    })
+  }
+
+  paths.sort((a, b) => a.position - b.position)
+  return paths
 }
 
 function getPathPages(pathName: string): LearnPageMeta[] {
@@ -65,6 +94,7 @@ function getPathPages(pathName: string): LearnPageMeta[] {
       title: data.title ?? dir.replace(/-/g, ' '),
       description: data.description ?? '',
       position: data.position ?? 99,
+      icon: data.icon,
     })
   }
 
@@ -73,14 +103,13 @@ function getPathPages(pathName: string): LearnPageMeta[] {
 }
 
 export function getAllLearnSlugs(): string[][] {
-  if (!fs.existsSync(LEARN_DIRECTORY)) return []
-
+  const paths = discoverPaths()
   const slugs: string[][] = []
 
-  for (const pathName of pathOrder) {
-    slugs.push([pathName])
+  for (const p of paths) {
+    slugs.push([p.name])
 
-    const pages = getPathPages(pathName)
+    const pages = getPathPages(p.name)
     for (const page of pages) {
       slugs.push(page.slug)
     }
@@ -90,13 +119,14 @@ export function getAllLearnSlugs(): string[][] {
 }
 
 export function getAllLearnPaths(): LearnPath[] {
-  return pathOrder.map((name) => {
-    const pages = getPathPages(name)
+  return discoverPaths().map((p) => {
+    const pages = getPathPages(p.name)
 
     return {
-      name,
-      label: pathLabels[name] ?? name,
-      description: pathDescriptions[name] ?? '',
+      name: p.name,
+      label: p.label,
+      description: p.description,
+      icon: p.icon,
       sectionCount: pages.length,
       pages,
     }
@@ -104,14 +134,17 @@ export function getAllLearnPaths(): LearnPath[] {
 }
 
 export function getPathData(pathName: string): LearnPath | null {
-  if (!pathLabels[pathName]) return null
+  const paths = discoverPaths()
+  const meta = paths.find((p) => p.name === pathName)
+  if (!meta) return null
 
   const pages = getPathPages(pathName)
 
   return {
-    name: pathName,
-    label: pathLabels[pathName],
-    description: pathDescriptions[pathName] ?? '',
+    name: meta.name,
+    label: meta.label,
+    description: meta.description,
+    icon: meta.icon,
     sectionCount: pages.length,
     pages,
   }
@@ -145,6 +178,7 @@ export async function getLearnPage(slug: string[]): Promise<LearnPage | null> {
     title: data.title ?? sectionName.replace(/-/g, ' '),
     description: data.description ?? '',
     position: data.position ?? 99,
+    icon: data.icon,
     contentHtml: result.toString(),
   }
 }

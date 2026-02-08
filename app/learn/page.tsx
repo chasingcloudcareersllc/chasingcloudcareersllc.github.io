@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight, Blocks } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { getAllLearnPaths } from '@/lib/learn'
+import { getIcon } from '@/lib/icons'
 
 export const metadata: Metadata = {
   title: 'Learning Paths',
@@ -10,10 +11,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/learn/',
   },
-}
-
-const pathIcons: Record<string, typeof Blocks> = {
-  foundations: Blocks,
 }
 
 export default function LearnPage() {
@@ -43,7 +40,7 @@ export default function LearnPage() {
         <div className="container-max max-w-4xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {paths.map((learnPath) => {
-              const Icon = pathIcons[learnPath.name] ?? Blocks
+              const Icon = getIcon(learnPath.icon)
 
               return (
                 <Link
