@@ -19,10 +19,8 @@ import {
 } from 'lucide-react'
 import {
   getAllLearnSlugs,
-  getSidebarData,
   getLearnPage,
   getPathData,
-  sectionDescriptions,
 } from '@/lib/learn'
 import type { Metadata } from 'next'
 import type { LucideIcon } from 'lucide-react'
@@ -98,8 +96,6 @@ export default async function LearnPageRoute({
     const pathData = getPathData(slug[0])
     if (!pathData) notFound()
 
-    const allPages = pathData.sections.flatMap((s) => s.pages)
-
     return (
       <div className="bg-white">
         {/* Hero Section */}
@@ -132,10 +128,9 @@ export default async function LearnPageRoute({
         <section className="section-padding">
           <div className="container-max max-w-4xl">
             <div className="space-y-4">
-              {allPages.map((page, index) => {
+              {pathData.pages.map((page, index) => {
                 const sectionName = page.slug[1]
                 const Icon = sectionIcons[sectionName] ?? Compass
-                const description = sectionDescriptions[sectionName] ?? ''
 
                 return (
                   <Link
@@ -155,7 +150,7 @@ export default async function LearnPageRoute({
                       <h2 className="text-lg font-bold text-slate-900 group-hover:text-accent-600 transition-colors">
                         {page.title}
                       </h2>
-                      <p className="text-slate-600 text-sm mt-1">{description}</p>
+                      <p className="text-slate-600 text-sm mt-1">{page.description}</p>
                     </div>
                     <ArrowRight className="h-5 w-5 text-slate-300 group-hover:text-accent-500 transition-colors flex-shrink-0 mt-1" />
                   </Link>
@@ -176,12 +171,11 @@ export default async function LearnPageRoute({
   }
 
   const pathName = slug[0]
-  const pathLabel =
-    pathName === 'foundations' ? 'Foundations' : pathName.replace(/-/g, ' ')
-  const sections = getSidebarData(pathName)
+  const pathData = getPathData(pathName)
+  const pathLabel = pathData?.label ?? pathName.replace(/-/g, ' ')
+  const allPages = pathData?.pages ?? []
 
-  // Build flat list for prev/next navigation
-  const allPages = sections.flatMap((s) => s.pages)
+  // Prev/next navigation
   const currentPath = slug.join('/')
   const currentIndex = allPages.findIndex((p) => p.slug.join('/') === currentPath)
   const prevPage = currentIndex > 0 ? allPages[currentIndex - 1] : null
