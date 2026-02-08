@@ -1,5 +1,7 @@
 # CLAUDE.md
 
+See [AGENTS.md](./AGENTS.md) for the comprehensive repository guide.
+
 ## Quick Reference
 
 - **Stack**: Next.js 16, React 19, Tailwind CSS 4, TypeScript
