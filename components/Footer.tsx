@@ -27,7 +27,7 @@ export function Footer() {
                 <Github className="h-5 w-5" />
               </a>
               <a
-                href="https://www.linkedin.com/company/chasingcloudcareersllc"
+                href="https://www.linkedin.com/company/chasing-cloud-careers"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-slate-400 hover:text-white transition-colors"
@@ -66,7 +66,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://www.linkedin.com/company/chasingcloudcareersllc"
+                  href="https://www.linkedin.com/company/chasing-cloud-careers"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-slate-300 hover:text-white transition-colors"

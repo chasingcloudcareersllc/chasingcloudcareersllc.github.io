@@ -44,7 +44,7 @@ export default function Home() {
           description: 'Free self-service training materials, learning paths, and mentorship for cloud computing, AI, and DevOps.',
           sameAs: [
             'https://github.com/chasingcloudcareersllc',
-            'https://www.linkedin.com/company/chasingcloudcareersllc',
+            'https://www.linkedin.com/company/chasing-cloud-careers',
           ],
         }}
       />

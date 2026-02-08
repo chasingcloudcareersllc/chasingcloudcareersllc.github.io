@@ -51,7 +51,7 @@ npm run lint
 ## Get Started
 
 - **Ready to learn?** Start with our [Getting Started guide](https://chasingcloudcareersllc.github.io/learn/getting-started/getting-started/)
-- **Connect with us**: [GitHub](https://github.com/chasingcloudcareersllc) | [LinkedIn](https://www.linkedin.com/company/chasingcloudcareersllc)
+- **Connect with us**: [GitHub](https://github.com/chasingcloudcareersllc) | [LinkedIn](https://www.linkedin.com/company/chasing-cloud-careers)
 
 ---
 
