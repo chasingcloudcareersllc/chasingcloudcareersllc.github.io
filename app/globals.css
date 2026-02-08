@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-slate-50: #f7fafc;
+  --color-slate-100: #edf2f7;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e0;
+  --color-slate-400: #a0aec0;
+  --color-slate-500: #718096;
+  --color-slate-600: #4a5568;
+  --color-slate-700: #2d3748;
+  --color-slate-800: #1a202c;
+  --color-slate-900: #171923;
+
+  --color-accent-50: #f5f3ff;
+  --color-accent-100: #ede9fe;
+  --color-accent-200: #ddd6fe;
+  --color-accent-300: #c4b5fd;
+  --color-accent-400: #a78bfa;
+  --color-accent-500: #7c3aed;
+  --color-accent-600: #6d28d9;
+  --color-accent-700: #5b21b6;
+  --color-accent-800: #4c1d95;
+  --color-accent-900: #3b0764;
+
+  --color-secondary-50: #eff6ff;
+  --color-secondary-100: #dbeafe;
+  --color-secondary-200: #bfdbfe;
+  --color-secondary-300: #93c5fd;
+  --color-secondary-400: #60a5fa;
+  --color-secondary-500: #3b82f6;
+  --color-secondary-600: #2563eb;
+  --color-secondary-700: #1d4ed8;
+  --color-secondary-800: #1e40af;
+  --color-secondary-900: #1e3a8a;
+
+  --color-tertiary-50: #fdf2f8;
+  --color-tertiary-100: #fce7f3;
+  --color-tertiary-200: #fbcfe8;
+  --color-tertiary-300: #f9a8d4;
+  --color-tertiary-400: #f472b6;
+  --color-tertiary-500: #ec4899;
+  --color-tertiary-600: #db2777;
+  --color-tertiary-700: #be185d;
+  --color-tertiary-800: #9d174d;
+  --color-tertiary-900: #831843;
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+@layer base {
+  body {
+    @apply text-slate-800 bg-white;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-accent-500 hover:bg-accent-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-400 transition-colors duration-200;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 border border-slate-300 text-base font-medium rounded-lg text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-400 transition-colors duration-200;
+  }
+  .btn-accent {
+    @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-slate-700 hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 transition-colors duration-200;
+  }
+  .section-padding {
+    @apply py-16 px-4 sm:px-6 lg:px-8;
+  }
+  .container-max {
+    @apply max-w-7xl mx-auto;
+  }
+  .prose-blog {
+    @apply text-slate-700 leading-relaxed;
+    h1 { @apply text-3xl font-bold text-slate-900 mt-10 mb-4; }
+    h2 { @apply text-2xl font-bold text-slate-900 mt-8 mb-4; }
+    h3 { @apply text-xl font-semibold text-slate-900 mt-6 mb-3; }
+    h4 { @apply text-lg font-semibold text-slate-900 mt-4 mb-2; }
+    p { @apply mb-4; }
+    a { @apply text-accent-500 hover:text-accent-600 underline; }
+    ul { @apply list-disc pl-6 mb-4 space-y-1; }
+    ol { @apply list-decimal pl-6 mb-4 space-y-1; }
+    blockquote { @apply border-l-4 border-accent-300 pl-4 italic text-slate-600 my-6; }
+    code { @apply bg-slate-100 text-slate-800 px-1.5 py-0.5 rounded text-sm font-mono; }
+    pre { @apply bg-slate-900 text-slate-100 rounded-lg p-4 overflow-x-auto mb-4; }
+    pre code { @apply bg-transparent p-0 text-inherit; }
+    img { @apply rounded-lg my-6 max-w-full; }
+    hr { @apply border-slate-200 my-8; }
+    table { @apply w-full border-collapse mb-6 text-sm; }
+    thead { @apply bg-slate-50; }
+    th { @apply text-left font-semibold text-slate-900 px-4 py-2.5 border-b-2 border-slate-200; }
+    td { @apply px-4 py-2 border-b border-slate-100 text-slate-700; }
+    tbody tr:hover { @apply bg-slate-50; }
+    svg[id^="mermaid"] { @apply my-6 mx-auto max-w-full; max-height: 500px; }
+  }
+  .prose-learn {
+    @apply text-slate-700 leading-relaxed;
+    h1 { @apply text-3xl font-bold text-slate-900 mt-10 mb-4; }
+    h2 { @apply text-2xl font-bold text-slate-900 mt-8 mb-4; }
+    h3 { @apply text-xl font-semibold text-slate-900 mt-6 mb-3; }
+    h4 { @apply text-lg font-semibold text-slate-900 mt-4 mb-2; }
+    h5 { @apply text-base font-semibold text-slate-900 mt-3 mb-2; }
+    p { @apply mb-4; }
+    a { @apply text-accent-500 hover:text-accent-600 underline; }
+    ul { @apply list-disc pl-6 mb-4 space-y-1; }
+    ol { @apply list-decimal pl-6 mb-4 space-y-1; }
+    blockquote { @apply border-l-4 border-accent-300 pl-4 text-slate-600 my-6 not-italic; }
+    code { @apply bg-slate-100 text-slate-800 px-1.5 py-0.5 rounded text-sm font-mono; }
+    pre { @apply bg-slate-900 text-slate-100 rounded-lg p-4 overflow-x-auto mb-4; }
+    pre code { @apply bg-transparent p-0 text-inherit; }
+    img { @apply rounded-lg my-6 max-w-full; }
+    hr { @apply border-slate-200 my-8; }
+    table { @apply w-full border-collapse mb-6 text-sm; }
+    thead { @apply bg-slate-50; }
+    th { @apply text-left font-semibold text-slate-900 px-4 py-2.5 border-b-2 border-slate-200; }
+    td { @apply px-4 py-2 border-b border-slate-100 text-slate-700; }
+    tbody tr:hover { @apply bg-slate-50; }
+    svg[id^="mermaid"] { @apply my-6 mx-auto max-w-full; max-height: 500px; }
+  }
+}

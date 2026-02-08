@@ -1,0 +1,30 @@
+# Chasing Cloud Careers LLC
+
+> Free tech education, mentorship, and training for aspiring cloud professionals.
+
+## About
+
+Chasing Cloud Careers LLC provides public speaking on technical education, mentorship, and tech bootcamp cohorts. We offer free self-service training materials and learning paths covering cloud computing, AI, and DevOps.
+
+## Mission
+
+- Free Training: All training materials and learning paths are completely free and self-service
+- Hands-On Learning: Practical, project-based learning for real-world tech roles
+- Mentorship: Guidance from experienced professionals in the tech industry
+- Community: Tech bootcamp cohorts for collaborative learning
+
+## Pages
+
+- Home: https://chasingcloudcareersllc.github.io/
+- Learning Paths: https://chasingcloudcareersllc.github.io/learn/
+- Blog: https://chasingcloudcareersllc.github.io/blog/
+
+## Community
+
+- GitHub: https://github.com/chasingcloudcareersllc
+- LinkedIn: https://www.linkedin.com/company/chasingcloudcareersllc
+
+## Contact
+
+- Website: https://chasingcloudcareersllc.github.io
+- GitHub: https://github.com/chasingcloudcareersllc
