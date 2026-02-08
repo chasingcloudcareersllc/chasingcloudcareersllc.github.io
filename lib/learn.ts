@@ -32,6 +32,8 @@ export type LearnSection = {
 export type LearnPath = {
   name: string
   label: string
+  description: string
+  sectionCount: number
   sections: LearnSection[]
 }
 
@@ -39,6 +41,11 @@ const pathOrder = ['foundations']
 
 const pathLabels: Record<string, string> = {
   foundations: 'Foundations',
+}
+
+const pathDescriptions: Record<string, string> = {
+  foundations:
+    'Build the universal foundation for any tech career — from how computers work through infrastructure as code.',
 }
 
 const pathSections: Record<string, { order: string[]; labels: Record<string, string> }> = {
@@ -76,12 +83,44 @@ const pathSections: Record<string, { order: string[]; labels: Record<string, str
   },
 }
 
+export const sectionDescriptions: Record<string, string> = {
+  'getting-started':
+    'Welcome to the Foundations path. See the full roadmap, understand the structure, and get oriented before you begin.',
+  'introduction-to-computers':
+    'Hardware, software, binary, and the boot process. Understand the building blocks everything else is built on.',
+  'os-fundamentals':
+    'Processes, memory management, file systems, and user permissions. Learn what the operating system does for you.',
+  linux:
+    'Ubuntu terminal, apt, file operations, chmod/chown, and user management. Get hands-on with the server OS.',
+  'text-editing':
+    'Vim modes, navigation, editing, search/replace, and .vimrc configuration. Edit files anywhere, any time.',
+  'shell-scripting':
+    'Variables, conditionals, loops, pipes, redirects, and cron. Automate everything with Bash scripts.',
+  programming:
+    'Python syntax, data structures, functions, file I/O, virtual environments, and pip. Your general-purpose tool.',
+  'version-control':
+    'Git and GitHub: repos, commits, branches, merges, pull requests, and collaboration workflows.',
+  'networking-fundamentals':
+    'IP, TCP/UDP, DNS, HTTP, ports, firewalls, and SSH. Understand how computers communicate.',
+  cicd:
+    'GitHub Actions: workflows, triggers, jobs, secrets, and deploy pipelines. Automate testing and deployment.',
+  containers:
+    'Docker: images, Dockerfiles, volumes, networking, and Compose. Package applications for any environment.',
+  'container-orchestration':
+    'Kubernetes: pods, deployments, services, namespaces, and kubectl. Manage containers at scale.',
+  iac:
+    'Terraform: providers, resources, state, variables, and modules. Define infrastructure programmatically.',
+}
+
 export function getAllLearnSlugs(): string[][] {
   if (!fs.existsSync(LEARN_DIRECTORY)) return []
 
   const slugs: string[][] = []
 
   for (const pathName of pathOrder) {
+    // Add 1-part slug for the path landing page
+    slugs.push([pathName])
+
     const pathDir = path.join(LEARN_DIRECTORY, pathName)
     if (!fs.existsSync(pathDir)) continue
 
@@ -95,17 +134,43 @@ export function getAllLearnSlugs(): string[][] {
 
     const sections = config.order.filter((s) => allDirs.includes(s))
 
+    // Add 2-part slugs for each section (section name = filename)
     for (const section of sections) {
-      const sectionDir = path.join(pathDir, section)
-      const files = fs.readdirSync(sectionDir).filter((f) => f.endsWith('.md'))
-      for (const file of files) {
-        const slug = file.replace(/\.md$/, '')
-        slugs.push([pathName, section, slug])
-      }
+      slugs.push([pathName, section])
     }
   }
 
   return slugs
+}
+
+export function getAllLearnPaths(): LearnPath[] {
+  return pathOrder.map((name) => {
+    const config = pathSections[name]
+    const sections = config ? getSidebarData(name) : []
+
+    return {
+      name,
+      label: pathLabels[name] ?? name,
+      description: pathDescriptions[name] ?? '',
+      sectionCount: config ? config.order.length : 0,
+      sections,
+    }
+  })
+}
+
+export function getPathData(pathName: string): LearnPath | null {
+  if (!pathLabels[pathName]) return null
+
+  const sections = getSidebarData(pathName)
+  const config = pathSections[pathName]
+
+  return {
+    name: pathName,
+    label: pathLabels[pathName],
+    description: pathDescriptions[pathName] ?? '',
+    sectionCount: config ? config.order.length : 0,
+    sections,
+  }
 }
 
 export function getSidebarData(pathName: string): LearnSection[] {
@@ -132,8 +197,8 @@ export function getSidebarData(pathName: string): LearnSection[] {
       const { data } = matter(fileContents)
 
       return {
-        slug: [pathName, section, file.replace(/\.md$/, '')],
-        title: data.title ?? file.replace(/\.md$/, '').replace(/-/g, ' '),
+        slug: [pathName, section],
+        title: data.title ?? section.replace(/-/g, ' '),
         description: data.description ?? '',
         sidebarPosition: data.sidebar_position ?? 99,
       }
@@ -150,9 +215,11 @@ export function getSidebarData(pathName: string): LearnSection[] {
 }
 
 export async function getLearnPage(slug: string[]): Promise<LearnPage | null> {
-  if (slug.length < 3) return null
+  if (slug.length < 2) return null
 
-  const filePath = path.join(LEARN_DIRECTORY, slug[0], slug[1], `${slug[2]}.md`)
+  // 2-part slug: [pathName, sectionName] — filename is inferred from section name
+  const [pathName, sectionName] = slug
+  const filePath = path.join(LEARN_DIRECTORY, pathName, sectionName, `${sectionName}.md`)
   if (!fs.existsSync(filePath)) return null
 
   const fileContents = fs.readFileSync(filePath, 'utf8')
@@ -173,7 +240,7 @@ export async function getLearnPage(slug: string[]): Promise<LearnPage | null> {
 
   return {
     slug,
-    title: data.title ?? slug[2].replace(/-/g, ' '),
+    title: data.title ?? sectionName.replace(/-/g, ' '),
     description: data.description ?? '',
     sidebarPosition: data.sidebar_position ?? 99,
     contentHtml: result.toString(),
