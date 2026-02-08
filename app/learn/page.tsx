@@ -1,6 +1,21 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight, Cloud, Brain, Server } from 'lucide-react'
+import {
+  ArrowRight,
+  Compass,
+  Monitor,
+  Cpu,
+  Terminal,
+  PenTool,
+  FileCode,
+  Code,
+  GitBranch,
+  Network,
+  RefreshCw,
+  Container,
+  Ship,
+  Blocks,
+} from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Learning Paths',
@@ -11,35 +26,84 @@ export const metadata: Metadata = {
 }
 
 export default function LearnPage() {
-  const paths = [
+  const sections = [
     {
-      icon: Cloud,
+      icon: Compass,
       title: 'Getting Started',
-      description: 'New to tech? Start here. Learn the fundamentals and find the right learning path for your career goals in cloud computing, AI, or DevOps.',
-      href: '/learn/getting-started/getting-started/',
-      items: [
-        'Welcome & Orientation',
-        'Choosing Your Path',
-        'Setting Up Your Environment',
-      ],
-    },
-  ]
-
-  const comingSoon = [
-    {
-      icon: Cloud,
-      title: 'Cloud Computing',
-      description: 'AWS, Azure, and GCP fundamentals through advanced topics. Hands-on labs and real-world projects to build your cloud skills.',
+      description: 'Welcome to the Foundations path. See the full roadmap, understand the structure, and get oriented before you begin.',
+      href: '/learn/foundations/getting-started/getting-started/',
     },
     {
-      icon: Brain,
-      title: 'AI & Machine Learning',
-      description: 'From concepts to implementation. Learn machine learning, deep learning, and AI engineering with practical projects.',
+      icon: Monitor,
+      title: 'Introduction to Computers',
+      description: 'Hardware, software, binary, and the boot process. Understand the building blocks everything else is built on.',
+      href: '/learn/foundations/introduction-to-computers/introduction-to-computers/',
     },
     {
-      icon: Server,
-      title: 'DevOps & Infrastructure',
-      description: 'CI/CD pipelines, containers, Kubernetes, infrastructure as code, and modern DevOps practices.',
+      icon: Cpu,
+      title: 'OS Fundamentals',
+      description: 'Processes, memory management, file systems, and user permissions. Learn what the operating system does for you.',
+      href: '/learn/foundations/os-fundamentals/os-fundamentals/',
+    },
+    {
+      icon: Terminal,
+      title: 'Linux',
+      description: 'Ubuntu terminal, apt, file operations, chmod/chown, and user management. Get hands-on with the server OS.',
+      href: '/learn/foundations/linux/linux/',
+    },
+    {
+      icon: PenTool,
+      title: 'Text Editing',
+      description: 'Vim modes, navigation, editing, search/replace, and .vimrc configuration. Edit files anywhere, any time.',
+      href: '/learn/foundations/text-editing/text-editing/',
+    },
+    {
+      icon: FileCode,
+      title: 'Shell Scripting',
+      description: 'Variables, conditionals, loops, pipes, redirects, and cron. Automate everything with Bash scripts.',
+      href: '/learn/foundations/shell-scripting/shell-scripting/',
+    },
+    {
+      icon: Code,
+      title: 'Programming',
+      description: 'Python syntax, data structures, functions, file I/O, virtual environments, and pip. Your general-purpose tool.',
+      href: '/learn/foundations/programming/programming/',
+    },
+    {
+      icon: GitBranch,
+      title: 'Version Control',
+      description: 'Git and GitHub: repos, commits, branches, merges, pull requests, and collaboration workflows.',
+      href: '/learn/foundations/version-control/version-control/',
+    },
+    {
+      icon: Network,
+      title: 'Networking Fundamentals',
+      description: 'IP, TCP/UDP, DNS, HTTP, ports, firewalls, and SSH. Understand how computers communicate.',
+      href: '/learn/foundations/networking-fundamentals/networking-fundamentals/',
+    },
+    {
+      icon: RefreshCw,
+      title: 'CI/CD',
+      description: 'GitHub Actions: workflows, triggers, jobs, secrets, and deploy pipelines. Automate testing and deployment.',
+      href: '/learn/foundations/cicd/cicd/',
+    },
+    {
+      icon: Container,
+      title: 'Containers',
+      description: 'Docker: images, Dockerfiles, volumes, networking, and Compose. Package applications for any environment.',
+      href: '/learn/foundations/containers/containers/',
+    },
+    {
+      icon: Ship,
+      title: 'Container Orchestration',
+      description: 'Kubernetes: pods, deployments, services, namespaces, and kubectl. Manage containers at scale.',
+      href: '/learn/foundations/container-orchestration/container-orchestration/',
+    },
+    {
+      icon: Blocks,
+      title: 'Infrastructure as Code',
+      description: 'Terraform: providers, resources, state, variables, and modules. Define infrastructure programmatically.',
+      href: '/learn/foundations/iac/iac/',
     },
   ]
 
@@ -51,66 +115,42 @@ export default function LearnPage() {
         <div className="relative container-max section-padding">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6">
-              Learning
-              <span className="text-accent-500 block">Paths</span>
+              The Foundations
+              <span className="text-accent-500 block">Path</span>
             </h1>
             <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
-              Free, self-service training materials to help you build real-world skills in cloud computing, AI, and DevOps. Start where you are and grow at your own pace.
+              One sequential learning journey covering computing basics through infrastructure as code. Complete these 13 sections to build the universal foundation for any specialization — DevOps, Cloud Engineering, SRE, Platform Engineering, or AI/ML Infrastructure.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Available Paths */}
+      {/* Foundations Sections */}
       <section className="section-padding">
         <div className="container-max">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {paths.map((path) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {sections.map((section, index) => (
               <div
-                key={path.title}
+                key={section.title}
                 className="bg-white rounded-xl shadow-sm border border-slate-200 p-8 hover:shadow-md transition-shadow"
               >
-                <div className="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center mb-4">
-                  <path.icon className="h-6 w-6 text-accent-500" />
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center">
+                    <section.icon className="h-6 w-6 text-accent-500" />
+                  </div>
+                  <span className="text-sm font-medium text-slate-400">
+                    {index === 0 ? 'Start' : `Section ${index}`}
+                  </span>
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900 mb-3">{path.title}</h2>
-                <p className="text-slate-600 mb-6">{path.description}</p>
-                <ul className="space-y-2 mb-6">
-                  {path.items.map((item) => (
-                    <li key={item} className="flex items-center text-sm text-slate-600">
-                      <span className="w-1.5 h-1.5 bg-accent-400 rounded-full mr-3 flex-shrink-0"></span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                <h2 className="text-xl font-bold text-slate-900 mb-3">{section.title}</h2>
+                <p className="text-slate-600 mb-6 text-sm">{section.description}</p>
                 <Link
-                  href={path.href}
-                  className="inline-flex items-center text-accent-500 hover:text-accent-600 font-medium transition-colors"
+                  href={section.href}
+                  className="inline-flex items-center text-accent-500 hover:text-accent-600 font-medium transition-colors text-sm"
                 >
                   Start Learning
                   <ArrowRight className="h-4 w-4 ml-1" />
                 </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Coming Soon */}
-      <section className="section-padding bg-slate-50">
-        <div className="container-max">
-          <h2 className="text-2xl font-bold text-slate-900 mb-8 text-center">Coming Soon</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {comingSoon.map((path) => (
-              <div
-                key={path.title}
-                className="bg-white rounded-xl shadow-sm border border-slate-200 p-8 opacity-75"
-              >
-                <div className="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center mb-4">
-                  <path.icon className="h-6 w-6 text-slate-400" />
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">{path.title}</h3>
-                <p className="text-slate-600">{path.description}</p>
               </div>
             ))}
           </div>

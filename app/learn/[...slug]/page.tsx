@@ -44,7 +44,7 @@ export default async function LearnPageRoute({
     notFound()
   }
 
-  const sections = getSidebarData()
+  const sections = getSidebarData(slug[0])
 
   // Build flat list for prev/next navigation
   const allPages = sections.flatMap((s) => s.pages)

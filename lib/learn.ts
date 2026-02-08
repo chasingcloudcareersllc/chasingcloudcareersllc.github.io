@@ -29,44 +29,101 @@ export type LearnSection = {
   pages: LearnPageMeta[]
 }
 
+export type LearnPath = {
+  name: string
+  label: string
+  sections: LearnSection[]
+}
+
+const pathOrder = ['foundations']
+
+const pathLabels: Record<string, string> = {
+  foundations: 'Foundations',
+}
+
+const pathSections: Record<string, { order: string[]; labels: Record<string, string> }> = {
+  foundations: {
+    order: [
+      'getting-started',
+      'introduction-to-computers',
+      'os-fundamentals',
+      'linux',
+      'text-editing',
+      'shell-scripting',
+      'programming',
+      'version-control',
+      'networking-fundamentals',
+      'cicd',
+      'containers',
+      'container-orchestration',
+      'iac',
+    ],
+    labels: {
+      'getting-started': 'Getting Started',
+      'introduction-to-computers': 'Introduction to Computers',
+      'os-fundamentals': 'OS Fundamentals',
+      linux: 'Linux',
+      'text-editing': 'Text Editing',
+      'shell-scripting': 'Shell Scripting',
+      programming: 'Programming',
+      'version-control': 'Version Control',
+      'networking-fundamentals': 'Networking Fundamentals',
+      cicd: 'CI/CD',
+      containers: 'Containers',
+      'container-orchestration': 'Container Orchestration',
+      iac: 'Infrastructure as Code',
+    },
+  },
+}
+
 export function getAllLearnSlugs(): string[][] {
   if (!fs.existsSync(LEARN_DIRECTORY)) return []
 
   const slugs: string[][] = []
-  const sections = fs.readdirSync(LEARN_DIRECTORY).filter((dir) => {
-    const fullPath = path.join(LEARN_DIRECTORY, dir)
-    return fs.statSync(fullPath).isDirectory()
-  })
 
-  for (const section of sections) {
-    const sectionDir = path.join(LEARN_DIRECTORY, section)
-    const files = fs.readdirSync(sectionDir).filter((f) => f.endsWith('.md'))
-    for (const file of files) {
-      const slug = file.replace(/\.md$/, '')
-      slugs.push([section, slug])
+  for (const pathName of pathOrder) {
+    const pathDir = path.join(LEARN_DIRECTORY, pathName)
+    if (!fs.existsSync(pathDir)) continue
+
+    const config = pathSections[pathName]
+    if (!config) continue
+
+    const allDirs = fs.readdirSync(pathDir).filter((dir) => {
+      const fullPath = path.join(pathDir, dir)
+      return fs.statSync(fullPath).isDirectory()
+    })
+
+    const sections = config.order.filter((s) => allDirs.includes(s))
+
+    for (const section of sections) {
+      const sectionDir = path.join(pathDir, section)
+      const files = fs.readdirSync(sectionDir).filter((f) => f.endsWith('.md'))
+      for (const file of files) {
+        const slug = file.replace(/\.md$/, '')
+        slugs.push([pathName, section, slug])
+      }
     }
   }
 
   return slugs
 }
 
-export function getSidebarData(): LearnSection[] {
-  if (!fs.existsSync(LEARN_DIRECTORY)) return []
+export function getSidebarData(pathName: string): LearnSection[] {
+  const pathDir = path.join(LEARN_DIRECTORY, pathName)
+  if (!fs.existsSync(pathDir)) return []
 
-  const sectionOrder = ['getting-started']
-  const sectionLabels: Record<string, string> = {
-    'getting-started': 'Getting Started',
-  }
+  const config = pathSections[pathName]
+  if (!config) return []
 
-  const allDirs = fs.readdirSync(LEARN_DIRECTORY).filter((dir) => {
-    const fullPath = path.join(LEARN_DIRECTORY, dir)
+  const allDirs = fs.readdirSync(pathDir).filter((dir) => {
+    const fullPath = path.join(pathDir, dir)
     return fs.statSync(fullPath).isDirectory()
   })
 
-  const sections = sectionOrder.filter((s) => allDirs.includes(s))
+  const sections = config.order.filter((s) => allDirs.includes(s))
 
   return sections.map((section) => {
-    const sectionDir = path.join(LEARN_DIRECTORY, section)
+    const sectionDir = path.join(pathDir, section)
     const files = fs.readdirSync(sectionDir).filter((f) => f.endsWith('.md'))
 
     const pages = files.map((file) => {
@@ -75,7 +132,7 @@ export function getSidebarData(): LearnSection[] {
       const { data } = matter(fileContents)
 
       return {
-        slug: [section, file.replace(/\.md$/, '')],
+        slug: [pathName, section, file.replace(/\.md$/, '')],
         title: data.title ?? file.replace(/\.md$/, '').replace(/-/g, ' '),
         description: data.description ?? '',
         sidebarPosition: data.sidebar_position ?? 99,
@@ -86,16 +143,16 @@ export function getSidebarData(): LearnSection[] {
 
     return {
       name: section,
-      label: sectionLabels[section] ?? section,
+      label: config.labels[section] ?? section,
       pages,
     }
   })
 }
 
 export async function getLearnPage(slug: string[]): Promise<LearnPage | null> {
-  if (slug.length < 2) return null
+  if (slug.length < 3) return null
 
-  const filePath = path.join(LEARN_DIRECTORY, slug[0], `${slug[1]}.md`)
+  const filePath = path.join(LEARN_DIRECTORY, slug[0], slug[1], `${slug[2]}.md`)
   if (!fs.existsSync(filePath)) return null
 
   const fileContents = fs.readFileSync(filePath, 'utf8')
@@ -116,7 +173,7 @@ export async function getLearnPage(slug: string[]): Promise<LearnPage | null> {
 
   return {
     slug,
-    title: data.title ?? slug[1].replace(/-/g, ' '),
+    title: data.title ?? slug[2].replace(/-/g, ' '),
     description: data.description ?? '',
     sidebarPosition: data.sidebar_position ?? 99,
     contentHtml: result.toString(),
