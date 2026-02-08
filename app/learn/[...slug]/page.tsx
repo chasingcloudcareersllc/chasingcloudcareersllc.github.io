@@ -24,7 +24,6 @@ import {
   getPathData,
   sectionDescriptions,
 } from '@/lib/learn'
-import LearnSidebar from '@/components/LearnSidebar'
 import type { Metadata } from 'next'
 import type { LucideIcon } from 'lucide-react'
 
@@ -191,23 +190,16 @@ export default async function LearnPageRoute({
   return (
     <div className="bg-white">
       <div className="container-max section-padding">
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Sidebar */}
-          <aside className="lg:w-64 flex-shrink-0">
-            <div className="lg:sticky lg:top-24">
-              <Link
-                href={`/learn/${pathName}/`}
-                className="inline-flex items-center text-accent-500 hover:text-accent-600 font-medium mb-4 text-sm transition-colors"
-              >
-                <ArrowLeft className="h-4 w-4 mr-1" />
-                {pathLabel}
-              </Link>
-              <LearnSidebar sections={sections} currentSlug={slug} />
-            </div>
-          </aside>
+        <div className="max-w-4xl mx-auto">
+          <Link
+            href={`/learn/${pathName}/`}
+            className="inline-flex items-center text-accent-500 hover:text-accent-600 font-medium mb-8 text-sm transition-colors"
+          >
+            <ArrowLeft className="h-4 w-4 mr-1" />
+            {pathLabel}
+          </Link>
 
-          {/* Content */}
-          <article className="flex-grow min-w-0">
+          <article>
             <div
               className="prose-learn"
               dangerouslySetInnerHTML={{ __html: page.contentHtml }}
