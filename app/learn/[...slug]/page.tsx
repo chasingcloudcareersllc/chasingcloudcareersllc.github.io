@@ -19,7 +19,6 @@ import {
 } from 'lucide-react'
 import {
   getAllLearnSlugs,
-  getSidebarData,
   getLearnPage,
   getPathData,
   sectionDescriptions,
@@ -178,14 +177,6 @@ export default async function LearnPageRoute({
   const pathName = slug[0]
   const pathLabel =
     pathName === 'foundations' ? 'Foundations' : pathName.replace(/-/g, ' ')
-  const sections = getSidebarData(pathName)
-
-  // Build flat list for prev/next navigation
-  const allPages = sections.flatMap((s) => s.pages)
-  const currentPath = slug.join('/')
-  const currentIndex = allPages.findIndex((p) => p.slug.join('/') === currentPath)
-  const prevPage = currentIndex > 0 ? allPages[currentIndex - 1] : null
-  const nextPage = currentIndex >= 0 && currentIndex < allPages.length - 1 ? allPages[currentIndex + 1] : null
 
   return (
     <div className="bg-white">
@@ -204,38 +195,6 @@ export default async function LearnPageRoute({
               className="prose-learn"
               dangerouslySetInnerHTML={{ __html: page.contentHtml }}
             />
-
-            {/* Prev/Next Navigation */}
-            <div className="mt-12 pt-8 border-t border-slate-200 flex justify-between">
-              {prevPage ? (
-                <Link
-                  href={`/learn/${prevPage.slug.join('/')}/`}
-                  className="flex items-center text-accent-500 hover:text-accent-600 font-medium transition-colors"
-                >
-                  <ArrowLeft className="h-4 w-4 mr-2" />
-                  <div className="text-left">
-                    <div className="text-xs text-slate-400">Previous</div>
-                    <div>{prevPage.title}</div>
-                  </div>
-                </Link>
-              ) : (
-                <div />
-              )}
-              {nextPage ? (
-                <Link
-                  href={`/learn/${nextPage.slug.join('/')}/`}
-                  className="flex items-center text-accent-500 hover:text-accent-600 font-medium transition-colors text-right"
-                >
-                  <div>
-                    <div className="text-xs text-slate-400">Next</div>
-                    <div>{nextPage.title}</div>
-                  </div>
-                  <ArrowRight className="h-4 w-4 ml-2" />
-                </Link>
-              ) : (
-                <div />
-              )}
-            </div>
           </article>
         </div>
       </div>
