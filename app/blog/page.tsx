@@ -4,10 +4,10 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Blog',
-  description: 'Insights on tech education, cloud computing, AI, DevOps, and career development from Chasing Cloud Careers.',
+  description: 'Articles on computer science, infrastructure, software engineering, and building deep technical expertise on your own.',
   openGraph: {
     title: 'Blog',
-    description: 'Insights on tech education, cloud computing, AI, DevOps, and career development from Chasing Cloud Careers.',
+    description: 'Articles on computer science, infrastructure, software engineering, and building deep technical expertise on your own.',
   },
   alternates: {
     canonical: '/blog/',
@@ -30,7 +30,7 @@ export default function BlogPage() {
               <span className="text-accent-500 block">Blog</span>
             </h1>
             <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
-              Insights, tips, and thought leadership on cloud computing, tech careers, and continuous learning.
+              Articles on computer science, infrastructure, software engineering, and building deep technical expertise on your own.
             </p>
           </div>
         </div>

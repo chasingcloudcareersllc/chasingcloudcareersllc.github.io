@@ -7,7 +7,7 @@ import { getIcon } from '@/lib/icons'
 export const metadata: Metadata = {
   title: 'Learning Paths',
   description:
-    'Free self-service training materials for cloud computing, AI, and DevOps. Start your tech career learning journey today.',
+    'Free self-service learning paths from computer science fundamentals to production infrastructure. Choose a path and teach yourself at your own pace.',
   alternates: {
     canonical: '/learn/',
   },
@@ -28,8 +28,8 @@ export default function LearnPage() {
               <span className="text-accent-500 block">Paths</span>
             </h1>
             <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
-              From computer science fundamentals to production infrastructure.
-              Choose a path and build deep expertise at your own pace.
+              Self-service guides from computer science fundamentals to production infrastructure.
+              Choose a path and teach yourself at your own pace.
             </p>
           </div>
         </div>

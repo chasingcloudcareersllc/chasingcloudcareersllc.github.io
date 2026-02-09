@@ -13,23 +13,23 @@ export default function Home() {
   const values = [
     {
       icon: BookOpen,
-      title: 'Free Training',
-      description: 'All our training materials, learning paths, and resources are completely free and self-service. Learn at your own pace, on your own schedule.',
+      title: 'Completely Free',
+      description: 'Every learning path, lesson, and resource is free and always will be. No paywalls, no sign-ups, no catch.',
     },
     {
       icon: Rocket,
-      title: 'Theory Meets Practice',
-      description: 'Every concept is understood deeply and applied immediately. Learn the why and the how together, the way real expertise is built.',
+      title: 'Self-Service',
+      description: 'Everything you need is here. Pick a path, open a lesson, and start teaching yourself. No waiting on anyone else.',
     },
     {
       icon: GraduationCap,
-      title: 'Mentorship',
-      description: 'Guidance from experienced professionals who have walked the path. Public speaking on technical education and career development.',
+      title: 'Theory and Practice',
+      description: 'Every concept is understood deeply and applied immediately. Learn the why and the how together, the way real expertise is built.',
     },
     {
       icon: Users,
-      title: 'Community Driven',
-      description: 'Learn alongside others in tech bootcamp cohorts. Share knowledge, support each other, and grow together.',
+      title: 'Your Pace',
+      description: 'No deadlines, no cohorts, no schedules. Come back whenever you want and pick up right where you left off.',
     },
   ]
 
@@ -41,7 +41,7 @@ export default function Home() {
           '@type': 'Organization',
           name: 'Chasing Cloud Careers LLC',
           url: 'https://chasingcloudcareersllc.github.io',
-          description: 'Free learning paths that integrate computer science fundamentals with real-world practice. From zero experience to deep expertise.',
+          description: 'Free self-service learning paths from computer science fundamentals to production infrastructure. Teach yourself from zero to deep expertise.',
           sameAs: [
             'https://github.com/chasingcloudcareersllc',
             'https://www.linkedin.com/company/chasing-cloud-careers',
@@ -58,7 +58,7 @@ export default function Home() {
               Chasing Cloud Careers
             </h1>
             <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
-              Free learning paths that integrate computer science fundamentals with real-world practice. From zero experience to deep expertise in cloud, infrastructure, and software engineering.
+              Free self-service learning paths from computer science fundamentals to production infrastructure. Teach yourself from zero experience to deep expertise.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/learn/" className="btn-primary text-lg px-8 py-4">
@@ -81,7 +81,7 @@ export default function Home() {
               What We Offer
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              We bridge the gap between academic theory and practical skills. Our learning paths give you the deep understanding universities provide and the hands-on experience employers demand.
+              We give you the guide. You teach yourself. Our learning paths are built so you can go from knowing nothing to deep expertise entirely on your own.
             </p>
           </div>
 
@@ -107,7 +107,7 @@ export default function Home() {
             Ready to Start Your Journey?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Whether you&apos;re just starting out or looking to level up your skills, our free learning paths will guide you every step of the way.
+            Pick a learning path and start teaching yourself. Everything you need is right here, completely free.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/learn/" className="inline-flex items-center px-8 py-4 bg-white text-accent-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors">

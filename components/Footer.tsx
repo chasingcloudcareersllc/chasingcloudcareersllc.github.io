@@ -22,7 +22,7 @@ export function Footer() {
               />
             </Link>
             <p className="text-slate-300 mb-6 text-sm">
-              Bridging computer science theory and real-world practice. Free learning paths from zero to deep expertise.
+              Free self-service learning paths. Teach yourself from zero to deep expertise.
             </p>
             <div className="flex space-x-4">
               <a
