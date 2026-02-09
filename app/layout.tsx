@@ -9,8 +9,8 @@ export const metadata: Metadata = {
     template: '%s | Chasing Cloud Careers',
     default: 'Chasing Cloud Careers - Teach Yourself Tech',
   },
-  description: 'Free self-service learning paths from computer science fundamentals to production infrastructure. Teach yourself at your own pace, from zero experience to deep expertise.',
-  keywords: 'self-service learning, computer science, cloud computing, DevOps, infrastructure, software engineering, free learning paths, self-paced',
+  description: 'Self-service learning paths from computer science fundamentals to production infrastructure. Teach yourself at your own pace, from zero experience to deep expertise.',
+  keywords: 'self-service learning, computer science, cloud computing, DevOps, infrastructure, software engineering, learning paths, self-paced',
   authors: [{ name: 'Chasing Cloud Careers LLC' }],
   robots: {
     index: true,
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Chasing Cloud Careers - Teach Yourself Tech',
-    description: 'Free self-service learning paths from computer science fundamentals to production infrastructure. Teach yourself from zero to deep expertise.',
+    description: 'Self-service learning paths from computer science fundamentals to production infrastructure. Teach yourself from zero to deep expertise.',
     url: 'https://chasingcloudcareersllc.github.io',
     siteName: 'Chasing Cloud Careers',
     locale: 'en_US',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Chasing Cloud Careers - Teach Yourself Tech',
-    description: 'Free self-service learning paths from computer science fundamentals to production infrastructure. Teach yourself from zero to deep expertise.',
+    description: 'Self-service learning paths from computer science fundamentals to production infrastructure. Teach yourself from zero to deep expertise.',
     images: ['/logo.png'],
   },
   alternates: {

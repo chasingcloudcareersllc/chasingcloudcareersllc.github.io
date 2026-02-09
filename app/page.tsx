@@ -13,13 +13,13 @@ export default function Home() {
   const values = [
     {
       icon: BookOpen,
-      title: 'Completely Free',
-      description: 'Every learning path, lesson, and resource is free and always will be. No paywalls, no sign-ups, no catch.',
+      title: 'Self-Service',
+      description: 'Everything you need is here. Pick a path, open a lesson, and start teaching yourself. No waiting on anyone else.',
     },
     {
       icon: Rocket,
-      title: 'Self-Service',
-      description: 'Everything you need is here. Pick a path, open a lesson, and start teaching yourself. No waiting on anyone else.',
+      title: 'Zero to Expert',
+      description: 'Start with no experience and build deep expertise. Every path is designed to take you from the very beginning to professional competency.',
     },
     {
       icon: GraduationCap,
@@ -41,7 +41,7 @@ export default function Home() {
           '@type': 'Organization',
           name: 'Chasing Cloud Careers LLC',
           url: 'https://chasingcloudcareersllc.github.io',
-          description: 'Free self-service learning paths from computer science fundamentals to production infrastructure. Teach yourself from zero to deep expertise.',
+          description: 'Self-service learning paths from computer science fundamentals to production infrastructure. Teach yourself from zero to deep expertise.',
           sameAs: [
             'https://github.com/chasingcloudcareersllc',
             'https://www.linkedin.com/company/chasing-cloud-careers',
@@ -58,7 +58,7 @@ export default function Home() {
               Chasing Cloud Careers
             </h1>
             <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
-              Free self-service learning paths from computer science fundamentals to production infrastructure. Teach yourself from zero experience to deep expertise.
+              Self-service learning paths from computer science fundamentals to production infrastructure. Teach yourself from zero experience to deep expertise.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/learn/" className="btn-primary text-lg px-8 py-4">
@@ -107,7 +107,7 @@ export default function Home() {
             Ready to Start Your Journey?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Pick a learning path and start teaching yourself. Everything you need is right here, completely free.
+            Pick a learning path and start teaching yourself. Everything you need is right here.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/learn/" className="inline-flex items-center px-8 py-4 bg-white text-accent-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors">

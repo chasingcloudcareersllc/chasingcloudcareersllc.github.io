@@ -22,7 +22,7 @@ export function Footer() {
               />
             </Link>
             <p className="text-slate-300 mb-6 text-sm">
-              Free self-service learning paths. Teach yourself from zero to deep expertise.
+              Self-service learning paths. Teach yourself from zero to deep expertise.
             </p>
             <div className="flex space-x-4">
               <a

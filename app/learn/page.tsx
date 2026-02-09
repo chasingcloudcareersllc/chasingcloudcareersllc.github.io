@@ -7,7 +7,7 @@ import { getIcon } from '@/lib/icons'
 export const metadata: Metadata = {
   title: 'Learning Paths',
   description:
-    'Free self-service learning paths from computer science fundamentals to production infrastructure. Choose a path and teach yourself at your own pace.',
+    'Self-service learning paths from computer science fundamentals to production infrastructure. Choose a path and teach yourself at your own pace.',
   alternates: {
     canonical: '/learn/',
   },
