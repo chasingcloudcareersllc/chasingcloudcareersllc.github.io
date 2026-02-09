@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Menu, X, Github } from 'lucide-react'
 
 export function Header() {
@@ -31,10 +32,15 @@ export function Header() {
       <nav className="container-max px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3">
-            <span className="text-xl font-bold text-slate-800">
-              Chasing Cloud Careers
-            </span>
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/logo.png"
+              alt="Chasing Cloud Careers"
+              width={40}
+              height={40}
+              className="h-10 w-10"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}
