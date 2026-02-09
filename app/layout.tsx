@@ -30,11 +30,20 @@ export const metadata: Metadata = {
     siteName: 'Chasing Cloud Careers',
     locale: 'en_US',
     type: 'website',
+    images: [
+      {
+        url: '/logo.png',
+        width: 1024,
+        height: 1024,
+        alt: 'Chasing Cloud Careers',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Chasing Cloud Careers - Free Tech Education & Training',
     description: 'Free self-service training materials, learning paths, and mentorship for cloud computing, AI, and DevOps.',
+    images: ['/logo.png'],
   },
   alternates: {
     canonical: '/',
