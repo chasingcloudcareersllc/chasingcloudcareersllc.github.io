@@ -18,8 +18,8 @@ export default function Home() {
     },
     {
       icon: Rocket,
-      title: 'Hands-On Learning',
-      description: 'Practical, project-based learning that prepares you for real-world cloud and tech roles. No theory without practice.',
+      title: 'Theory Meets Practice',
+      description: 'Every concept is understood deeply and applied immediately. Learn the why and the how together, the way real expertise is built.',
     },
     {
       icon: GraduationCap,
@@ -41,7 +41,7 @@ export default function Home() {
           '@type': 'Organization',
           name: 'Chasing Cloud Careers LLC',
           url: 'https://chasingcloudcareersllc.github.io',
-          description: 'Free self-service training materials, learning paths, and mentorship for cloud computing, AI, and DevOps.',
+          description: 'Free learning paths that integrate computer science fundamentals with real-world practice. From zero experience to deep expertise.',
           sameAs: [
             'https://github.com/chasingcloudcareersllc',
             'https://www.linkedin.com/company/chasing-cloud-careers',
@@ -58,7 +58,7 @@ export default function Home() {
               Chasing Cloud Careers
             </h1>
             <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
-              Free self-service training materials and learning paths for cloud computing, AI, and DevOps. Start your tech career journey today with hands-on, practical education.
+              Free learning paths that integrate computer science fundamentals with real-world practice. From zero experience to deep expertise in cloud, infrastructure, and software engineering.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/learn/" className="btn-primary text-lg px-8 py-4">
@@ -81,7 +81,7 @@ export default function Home() {
               What We Offer
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Chasing Cloud Careers LLC provides public speaking on technical education, mentorship, and tech bootcamp cohorts. We believe everyone deserves access to quality tech training, regardless of their background.
+              We bridge the gap between academic theory and practical skills. Our learning paths give you the deep understanding universities provide and the hands-on experience employers demand.
             </p>
           </div>
 

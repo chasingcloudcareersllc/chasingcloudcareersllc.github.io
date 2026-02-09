@@ -28,8 +28,8 @@ export default function LearnPage() {
               <span className="text-accent-500 block">Paths</span>
             </h1>
             <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
-              Free self-service training materials for cloud computing, AI, and
-              DevOps. Choose a path and start learning at your own pace.
+              From computer science fundamentals to production infrastructure.
+              Choose a path and build deep expertise at your own pace.
             </p>
           </div>
         </div>

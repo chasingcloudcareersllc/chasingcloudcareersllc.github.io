@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Github, Linkedin } from 'lucide-react'
 import { getAllLearnPaths } from '@/lib/learn'
 
@@ -11,10 +12,14 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Org Info */}
           <div className="col-span-1 md:col-span-1">
-            <Link href="/" className="flex items-center space-x-3 mb-4">
-              <span className="text-xl font-bold">
-                Chasing Cloud Careers
-              </span>
+            <Link href="/" className="flex items-center mb-4">
+              <Image
+                src="/logo.png"
+                alt="Chasing Cloud Careers"
+                width={40}
+                height={40}
+                className="h-10 w-10"
+              />
             </Link>
             <p className="text-slate-300 mb-6 text-sm">
               Free tech education, mentorship, and training for aspiring cloud professionals.

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: '%s | Chasing Cloud Careers',
     default: 'Chasing Cloud Careers - Free Tech Education & Training',
   },
-  description: 'Free self-service training materials, learning paths, and mentorship for cloud computing, AI, and DevOps. Public speaking on technical education and tech bootcamp cohorts.',
+  description: 'Free learning paths that integrate computer science fundamentals with real-world practice. From zero experience to deep expertise in cloud, infrastructure, and software engineering.',
   keywords: 'cloud computing, tech education, training, mentorship, bootcamp, DevOps, AI, machine learning, learning paths, free training',
   authors: [{ name: 'Chasing Cloud Careers LLC' }],
   robots: {
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Chasing Cloud Careers - Free Tech Education & Training',
-    description: 'Free self-service training materials, learning paths, and mentorship for cloud computing, AI, and DevOps.',
+    description: 'Free learning paths that integrate computer science fundamentals with real-world practice. From zero experience to deep expertise.',
     url: 'https://chasingcloudcareersllc.github.io',
     siteName: 'Chasing Cloud Careers',
     locale: 'en_US',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Chasing Cloud Careers - Free Tech Education & Training',
-    description: 'Free self-service training materials, learning paths, and mentorship for cloud computing, AI, and DevOps.',
+    description: 'Free learning paths that integrate computer science fundamentals with real-world practice. From zero experience to deep expertise.',
     images: ['/logo.png'],
   },
   alternates: {
