@@ -12,6 +12,11 @@ import {
   Container,
   Ship,
   Blocks,
+  Plug,
+  Shield,
+  Layers,
+  Database,
+  BrainCircuit,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
@@ -29,6 +34,11 @@ const iconRegistry: Record<string, LucideIcon> = {
   container: Container,
   ship: Ship,
   blocks: Blocks,
+  plug: Plug,
+  shield: Shield,
+  layers: Layers,
+  database: Database,
+  'brain-circuit': BrainCircuit,
 }
 
 export const defaultIcon = Blocks
